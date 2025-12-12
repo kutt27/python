@@ -1,10 +1,6 @@
 # 🐍 Complete Python Programming Course
 
 **Master Python from Basics to Advanced with Real-World Projects**
-
-> **Course Link**: [hitesh.ai](https://hitesh.ai)  
-> **Instructor**: Hitesh Choudhary
-
 ---
 
 ## 📚 Course Overview
@@ -172,29 +168,6 @@ By the end of this course, you will be able to:
 
 ---
 
-## 🎯 Target Audience
-
-- **Beginners** - No prior programming experience
-- **Students** - Learning Python for academic purposes
-- **Professionals** - Wanting to add Python to their skill set
-- **Career Changers** - Transitioning to software development
-- **Hobbyists** - Interested in automation and data analysis
-
----
-
-## 📞 Support & Community
-
-- **Course Platform**: [hitesh.ai](https://hitesh.ai)
-- **Instructor**: Hitesh Choudhary
-- **Community**: Join the course community for discussions and support
-
----
-
-## 📄 License
-
-This course material is provided for educational purposes. Please respect the instructor's intellectual property and course terms.
-
----
 
 **Ready to start your Python journey?** 🚀
 
