@@ -13,6 +13,35 @@ Real-World Applications:
 
 from typing import Any
 
+def demonstrate_memory_address() -> None:
+    """
+    Demonstrates how to check object memory addresses.
+    
+    The id() function returns the memory address of an object.
+    This is useful for:
+    - Debugging reference issues
+    - Understanding object lifecycle
+    - Verifying immutability
+    - Profiling memory usage
+    """
+    # Configuration example: Database connection strings
+    db_host_dev = "localhost"
+    db_host_prod = "db.production.com"
+    
+    print(f"\nDevelopment DB: {db_host_dev}")
+    print(f"Memory ID: {id(db_host_dev)}")
+    print(f"Hex address: {hex(id(db_host_dev))}")
+    
+    print(f"\nProduction DB: {db_host_prod}")
+    print(f"Memory ID: {id(db_host_prod)}")
+    print(f"Hex address: {hex(id(db_host_prod))}")
+    
+    # String interning for identical strings
+    db_host_dev2 = "localhost"
+    print(f"\nString interning demo:")
+    print(f"db_host_dev is db_host_dev2: {db_host_dev is db_host_dev2}")
+    print("Python interns(caches) short strings for memory efficiency")
+
 
 def demonstrate_name_binding() -> None:
     """
@@ -59,49 +88,21 @@ def demonstrate_identity_vs_equality() -> None:
     print(f"\na = {a}, b = {b}")
     print(f"a == b: {a == b}  (same value)")
     print(f"a is b: {a is b}  (same object - Python caches small integers)")
+    print(f"id(a): {id(a)}, id(b): {id(b)}")
     
     # Larger integers are not cached
-    x = 10000
-    y = 10000
+    x = 1000000
+    y = 1000000
     print(f"\nx = {x}, y = {y}")
     print(f"x == y: {x == y}  (same value)")
     print(f"x is y: {x is y}  (different objects)")
     print(f"id(x): {id(x)}, id(y): {id(y)}")
     
+
     print(f"\n{'='*60}")
     print("Best Practice: Use '==' for value comparison")
     print("               Use 'is' only for None, True, False, singletons")
     print(f"{'='*60}")
-
-
-def demonstrate_memory_address() -> None:
-    """
-    Demonstrates how to check object memory addresses.
-    
-    The id() function returns the memory address of an object.
-    This is useful for:
-    - Debugging reference issues
-    - Understanding object lifecycle
-    - Verifying immutability
-    - Profiling memory usage
-    """
-    # Configuration example: Database connection strings
-    db_host_dev = "localhost"
-    db_host_prod = "db.production.com"
-    
-    print(f"\nDevelopment DB: {db_host_dev}")
-    print(f"Memory ID: {id(db_host_dev)}")
-    print(f"Hex address: {hex(id(db_host_dev))}")
-    
-    print(f"\nProduction DB: {db_host_prod}")
-    print(f"Memory ID: {id(db_host_prod)}")
-    print(f"Hex address: {hex(id(db_host_prod))}")
-    
-    # String interning for identical strings
-    db_host_dev2 = "localhost"
-    print(f"\nString interning demo:")
-    print(f"db_host_dev is db_host_dev2: {db_host_dev is db_host_dev2}")
-    print("Python interns short strings for memory efficiency")
 
 
 def main() -> None:
