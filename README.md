@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-=======
-# 🐍 Complete Python Programming Course
+# Complete Python Programming Course
 
 **Master Python from Basics to Advanced with Real-World Projects**
 ---
 
-## 📚 Course Overview
+## Course Overview
 
 This comprehensive Python course takes you from absolute beginner to advanced Python developer through hands-on projects and practical examples. Learn Python fundamentals, advanced concepts, and build real-world applications that showcase your skills.
 
