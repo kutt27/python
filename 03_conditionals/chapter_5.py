@@ -146,15 +146,13 @@ def check_circuit_breaker(
     return (False, "closed")
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("SERVICE HEALTH MONITORING & AUTOMATION".center(70))
-    print("="*70)
+
+def demonstrate_health_checks() -> None:
+    """
+    Demonstrates service health checks using metrics and thresholds.
     
-    print("\n[1] SERVICE HEALTH CHECKS")
-    print("-" * 70)
-    
+    Real-world use case: Service monitoring, health dashboards.
+    """
     services = [
         (True, 150, 2.0, "API Gateway"),
         (True, 850, 3.5, "Authentication Service"),
@@ -168,10 +166,14 @@ def main() -> None:
         icon = "✓" if status == ServiceStatus.HEALTHY else ("⚠" if status  == ServiceStatus.DEGRADED else "✗")
         
         print(f"{icon} {name:25} | {status.value.upper():8} | {latency:>6.0f}ms | {errors:>5.1f}% errors")
+
+
+def demonstrate_alert_logic() -> None:
+    """
+    Demonstrates alert triggering logic with throttling.
     
-    print("\n\n[2] ALERT TRIGGERING LOGIC")
-    print("-" * 70)
-    
+    Real-world use case: Incident management, notification systems.
+    """
     alert_scenarios = [
         (ServiceStatus.OFFLINE, 1, 0, "Service just went offline"),
         (ServiceStatus.OFFLINE, 15, 1, "Still offline after 15 min"),
@@ -185,10 +187,14 @@ def main() -> None:
         alert_status = "🔔 ALERT" if should_alert else "  No alert"
         
         print(f"{alert_status} | {status.value.upper():8} | {duration:>2}min | {description}")
+
+
+def demonstrate_auto_scaling() -> None:
+    """
+    Demonstrates auto-scaling decisions based on resource usage.
     
-    print("\n\n[3] AUTO-SCALING DECISIONS")
-    print("-" * 70)
-    
+    Real-world use case: Cloud infrastructure management.
+    """
     scaling_scenarios = [
         (85, 90, 5, "High load"),
         (45, 50, 5, "Normal load"),
@@ -207,10 +213,14 @@ def main() -> None:
         }[action]
         
         print(f"{action_icon} {action.upper():12} | CPU:{cpu:>3}% MEM:{mem:>3}% | {instances} instances | {description}")
+
+
+def demonstrate_circuit_breaker() -> None:
+    """
+    Demonstrates the circuit breaker pattern for fault tolerance.
     
-    print("\n\n[4] CIRCUIT BREAKER PATTERN")
-    print("-" * 70)
-    
+    Real-world use case: Resilience in microservices.
+    """
     print("\nCircuit States:")
     
     # Closed -> Open
@@ -222,10 +232,32 @@ def main() -> None:
         print(f"  Failure {failures}: {status_icon} Circuit {state.upper():10} {' <- Threshold reached!' if  failures == 5 else ''}")
     
     # Open -> Half-open (after timeout)
-    import time
     last_fail = datetime.now() - timedelta(seconds=35)
     is_open, state = check_circuit_breaker(5, is_open=True, last_failure_time=last_fail)
     print(f"\n  After 35s timeout: Circuit {state.upper()} (trying request)")
+
+
+def main() -> None:
+    """Main function to run all demonstrations."""
+    print("="*70)
+    print("SERVICE HEALTH MONITORING & AUTOMATION".center(70))
+    print("="*70)
+    
+    print("\n[1] SERVICE HEALTH CHECKS")
+    print("-" * 70)
+    demonstrate_health_checks()
+    
+    print("\n\n[2] ALERT TRIGGERING LOGIC")
+    print("-" * 70)
+    demonstrate_alert_logic()
+    
+    print("\n\n[3] AUTO-SCALING DECISIONS")
+    print("-" * 70)
+    demonstrate_auto_scaling()
+    
+    print("\n\n[4] CIRCUIT BREAKER PATTERN")
+    print("-" * 70)
+    demonstrate_circuit_breaker()
     
     print("\n" + "="*70)
     print("Key Takeaways:")

@@ -12,7 +12,7 @@ Real-World Applications:
 - Account lockout policies
 """
 
-from typing import Optional, tuple
+from typing import Optional, tuple, List
 from datetime import datetime, timedelta
 from dataclasses import dataclass
 
@@ -207,15 +207,12 @@ def determine_password_strength(password: str) -> tuple[str, List[str]]:
     return (strength, suggestions)
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("USER AUTHENTICATION & SESSION MANAGEMENT".center(70))
-    print("="*70)
+def demonstrate_authentication() -> None:
+    """
+    Demonstrates the user authentication process with various scenarios.
     
-    print("\n[1] USER AUTHENTICATION")
-    print("-" * 70)
-    
+    Real-world use case: Login systems, security filters.
+    """
     auth_scenarios = [
         ("admin", "correct_password", "correct_password", False, 0, "Valid login"),
         ("admin", "wrong_password", "correct_password", False, 0, "Wrong password"),
@@ -230,10 +227,14 @@ def main() -> None:
         )
         status = "✓" if success else "✗"
         print(f"{status} {description:25} | {message}")
+
+
+def demonstrate_mfa_verification() -> None:
+    """
+    Demonstrates multi-factor authentication verification logic.
     
-    print("\n\n[2] MFA VERIFICATION")
-    print("-" * 70)
-    
+    Real-world use case: 2FA, identity verification.
+    """
     # Create a test session
     test_session = UserSession(
         user_id=1,
@@ -252,10 +253,14 @@ def main() -> None:
         success, message = verify_mfa_code(session, code, expected)
         status = "✓" if success else "✗"
         print(f"{status} {description:25} | {message}")
+
+
+def demonstrate_session_validation() -> None:
+    """
+    Demonstrates session lifecycle and validity checking.
     
-    print("\n\n[3] SESSION VALIDATION")
-    print("-" * 70)
-    
+    Real-world use case: Session management, stateless APIs.
+    """
     # Sessions for testing
     valid_session = UserSession(
         user_id=1,
@@ -293,10 +298,14 @@ def main() -> None:
         is_valid, message = check_session_validity(session, require_mfa)
         status = "✓" if is_valid else "✗"
         print(f"{status} {description:30} | {message}")
+
+
+def demonstrate_password_strength() -> None:
+    """
+    Demonstrates password policy evaluation and feedback.
     
-    print("\n\n[4] PASSWORD STRENGTH EVALUATION")
-    print("-" * 70)
-    
+    Real-world use case: User registration, security audits.
+    """
     test_passwords = [
         "weak",
         "Password1",
@@ -318,6 +327,29 @@ def main() -> None:
         if suggestions:
             for suggestion in suggestions:
                 print(f"           - {suggestion}")
+
+
+def main() -> None:
+    """Main function to run all demonstrations."""
+    print("="*70)
+    print("USER AUTHENTICATION & SESSION MANAGEMENT".center(70))
+    print("="*70)
+    
+    print("\n[1] USER AUTHENTICATION")
+    print("-" * 70)
+    demonstrate_authentication()
+    
+    print("\n\n[2] MFA VERIFICATION")
+    print("-" * 70)
+    demonstrate_mfa_verification()
+    
+    print("\n\n[3] SESSION VALIDATION")
+    print("-" * 70)
+    demonstrate_session_validation()
+    
+    print("\n\n[4] PASSWORD STRENGTH EVALUATION")
+    print("-" * 70)
+    demonstrate_password_strength()
     
     print("\n" + "="*70)
     print("Key Takeaways:")
@@ -327,6 +359,7 @@ def main() -> None:
     print("4. Use MFA for sensitive operations")
     print("5. Validate sessions before allowing protected actions")
     print("="*70)
+
 
 if __name__ == "__main__":
     main()

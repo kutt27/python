@@ -139,25 +139,26 @@ def process_batch_with_yield(items: List, batch_size: int) -> Generator[List, No
         yield batch
 
 
-def main() -> None:
-    """Main function demonstrating generator basics."""
-    print("="*70)
-    print("PYTHON GENERATORS: yield STATEMENT".center(70))
-    print("="*70)
+
+def demonstrate_log_streaming() -> None:
+    """
+    Demonstrates memory-efficient log streaming.
     
-    print("\n[1] BASIC GENERATOR - File Processing")
-    print("-" * 70)
-    
+    Real-world use case: Processing multi-gigabyte log files.
+    """
     log_gen = read_log_lines("app.log")
-    
     print(f"Generator created: {log_gen}")
     print("\nReading log lines:")
     for line in log_gen:
         print(f"  {line}")
+
+
+def demonstrate_db_pagination() -> None:
+    """
+    Demonstrates lazy database result pagination.
     
-    print("\n\n[2] DATABASE PAGINATION")
-    print("-" * 70)
-    
+    Real-world use case: Dynamic loading of UI elements (infinite scroll).
+    """
     results_gen = paginate_database_results("SELECT * FROM users", page_size=10)
     
     # Fetch first 2 pages only
@@ -169,49 +170,57 @@ def main() -> None:
     page2 = next(results_gen)
     print(f"\nPage 2: {len(page2)} records")
     print(f"  First record: {page2[0]}")
+
+
+def demonstrate_api_streaming() -> None:
+    """
+    Demonstrates real-time API data streaming.
     
-    # Can continue fetching more pages as needed
-    
-    print("\n\n[3] API DATA STREAMING")
-    print("-" * 70)
-    
+    Real-world use case: WebSocket data handling, live dashboards.
+    """
     api_stream = stream_api_data("/api/events")
-    
     for event in api_stream:
         print(f"  Received: User {event['user_id']} - {event['action']} at {event['timestamp']}")
+
+
+def demonstrate_fibonacci() -> None:
+    """
+    Demonstrates generating infinite-like mathematical sequences.
     
-    print("\n\n[4] FIBONACCI SEQUENCE")
-    print("-" * 70)
-    
+    Real-world use case: Algorithmic modeling, sequence analysis.
+    """
     fib_gen = fibonacci_generator(limit=10)
-    
     fib_numbers = list(fib_gen)
     print(f"First 10 Fibonacci numbers: {fib_numbers}")
+
+
+def demonstrate_batch_processing() -> None:
+    """
+    Demonstrates chunked processing of large collections.
     
-    print("\n\n[5] BATCH PROCESSING")
-    print("-" * 70)
-    
+    Real-world use case: ETL pipelines, bulk API uploads.
+    """
     items = list(range(1, 26))  # 25 items
     batch_gen = process_batch_with_yield(items, batch_size=7)
     
     for batch_num, batch in enumerate(batch_gen, 1):
         print(f"  Batch {batch_num}: {batch[:3]}... ({len(batch)} items total)")
+
+
+def demonstrate_memory_efficiency() -> None:
+    """
+    Demonstrates memory footprint difference between lists and generators.
     
-    print("\n\n[6] GENERATOR vs LIST - Memory Comparison")
-    print("-" * 70)
-    
-    # List: All values in memory
+    Real-world use case: High-performance data processing.
+    """
     def get_numbers_list(n):
         return [i ** 2 for i in range(n)]
     
-    # Generator: Values computed on-demand
     def get_numbers_generator(n):
         for i in range(n):
             yield i ** 2
     
-    # Small example to show difference
     n = 10
-    
     nums_list = get_numbers_list(n)
     nums_gen = get_numbers_generator(n)
     
@@ -221,26 +230,45 @@ def main() -> None:
     for num in nums_gen:
         print(f"  {num}", end=" ")
     print()
+
+
+def main() -> None:
+    """Main function demonstrating generator basics with yield."""
+    print("="*70)
+    print("PYTHON GENERATORS: yield STATEMENT".center(70))
+    print("="*70)
+    
+    print("\n[1] BASIC GENERATOR - File Processing")
+    print("-" * 70)
+    demonstrate_log_streaming()
+    
+    print("\n\n[2] DATABASE PAGINATION")
+    print("-" * 70)
+    demonstrate_db_pagination()
+    
+    print("\n\n[3] API DATA STREAMING")
+    print("-" * 70)
+    demonstrate_api_streaming()
+    
+    print("\n\n[4] FIBONACCI SEQUENCE")
+    print("-" * 70)
+    demonstrate_fibonacci()
+    
+    print("\n\n[5] BATCH PROCESSING")
+    print("-" * 70)
+    demonstrate_batch_processing()
+    
+    print("\n\n[6] MEMORY COMPARISON")
+    print("-" * 70)
+    demonstrate_memory_efficiency()
     
     print("\n" + "="*70)
-    print("Generator Characteristics:")
-    print("-" * 70)
-    print("• Uses 'yield' instead of 'return'")
-    print("• Maintains state between yields")
-    print("• Produces values lazily (on-demand)")
-    print("• Memory efficient for large datasets")
-    print("• Single-use (exhausted after iteration)")
-    print("\nCommon Use Cases:")
-    print("✓ Processing large files line by line")
-    print("✓ Database result pagination")
-    print("✓ Streaming API data")
-    print("✓ Infinite sequences")
-    print("✓ Pipeline transformations")
-    print("\nAdvantages:")
-    print("✓ Lower memory footprint")
-    print("✓ Start producing results immediately")
-    print("✓ Can represent infinite sequences")
-    print("✓ Cleaner code than iterator classes")
+    print("Key Takeaways:")
+    print("1. Generators use 'yield' to produce values one-at-a-time (lazily)")
+    print("2. They maintain execution state (variables, etc.) between yields")
+    print("3. Extremely memory-efficient as they don't store entire sequences")
+    print("4. Generators are iterators - they are single-use and can be exhausted")
+    print("5. Ideal for processing large files, database results, or infinite feeds")
     print("="*70)
 
 

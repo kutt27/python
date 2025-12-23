@@ -110,28 +110,42 @@ def paginate_results(total_items: int, page_size: int = 20) -> List[tuple]:
     return pages
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("FOR LOOPS: RANGE & ITERATION".center(70))
-    print("="*70)
+
+def demonstrate_batch_processing() -> None:
+    """
+    Demonstrates batch request processing using range().
     
-    print("\n[1] BATCH REQUEST PROCESSING")
-    print("-" * 70)
+    Real-world use case: Large-scale API calls, database batching.
+    """
     process_batch_requests(total_requests=45, batch_size=10)
+
+
+def demonstrate_id_generation() -> None:
+    """
+    Demonstrates sequential ID generation using range().
     
-    print("\n\n[2] USER ID GENERATION")
-    print("-" * 70)
+    Real-world use case: Mock data generation, sequential indexing.
+    """
     user_ids = generate_user_ids(start=1000, count=10)
     print(f"Generated user IDs: {user_ids}")
+
+
+def demonstrate_job_retry() -> None:
+    """
+    Demonstrates job retries with nested loops and range().
     
-    print("\n\n[3] JOB RETRY MECHANISM")
-    print("-" * 70)
+    Real-world use case: Resilience in task processing.
+    """
     failed_jobs = [101, 102, 103]
     retry_failed_jobs(failed_jobs, max_retries=3)
+
+
+def demonstrate_api_pagination() -> None:
+    """
+    Demonstrates pagination logic using range() and calculations.
     
-    print("\n\n[4] API PAGINATION")
-    print("-" * 70)
+    Real-world use case: API endpoints, search results.
+    """
     total_records = 87
     page_size = 20
     
@@ -142,10 +156,14 @@ def main() -> None:
     for page_num, start, end in pages:
         items_count = end - start
         print(f"Page {page_num}: Records {start}-{end} ({items_count} items)")
+
+
+def demonstrate_range_variations() -> None:
+    """
+    Demonstrates the various parameters of the range() function.
     
-    print("\n\n[5] RANGE VARIATIONS")
-    print("-" * 70)
-    
+    Real-world use case: Flexible loop control.
+    """
     # Basic range
     print("range(5):", list(range(5)))
     
@@ -157,6 +175,33 @@ def main() -> None:
     
     # Reverse
     print("range(10, 0, -1):", list(range(10, 0, -1)))
+
+
+def main() -> None:
+    """Main function to run all demonstrations for for loops."""
+    print("="*70)
+    print("PYTHON FOR LOOPS: RANGE & ITERATION".center(70))
+    print("="*70)
+    
+    print("\n[1] BATCH REQUEST PROCESSING")
+    print("-" * 70)
+    demonstrate_batch_processing()
+    
+    print("\n\n[2] USER ID GENERATION")
+    print("-" * 70)
+    demonstrate_id_generation()
+    
+    print("\n\n[3] JOB RETRY MECHANISM")
+    print("-" * 70)
+    demonstrate_job_retry()
+    
+    print("\n\n[4] API PAGINATION")
+    print("-" * 70)
+    demonstrate_api_pagination()
+    
+    print("\n\n[5] RANGE VARIATIONS")
+    print("-" * 70)
+    demonstrate_range_variations()
     
     print("\n" + "="*70)
     print("Key Takeaways:")

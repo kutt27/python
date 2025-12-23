@@ -233,15 +233,13 @@ def determine_deployment_strategy(config: Dict[str, Any]) -> str:
             return "📦 Standard deployment (all-at-once)"
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("PATTERN MATCHING: match/case (Python 3.10+)".center(70))
-    print("="*70)
+
+def demonstrate_api_routing() -> None:
+    """
+    Demonstrates API request routing using pattern matching.
     
-    print("\n[1] API REQUEST ROUTING")
-    print("-" * 70)
-    
+    Real-world use case: Web frameworks, API development.
+    """
     requests = [
         ("GET", "/users", {}),
         ("POST", "/users", {"name": "Alice"}),
@@ -253,10 +251,14 @@ def main() -> None:
     for method, endpoint, data in requests:
         result = route_api_request(method, endpoint, data)
         print(f"{method:6} {endpoint:15} -> {result}")
+
+
+def demonstrate_cli_parsing() -> None:
+    """
+    Demonstrates CLI command parsing with list patterns.
     
-    print("\n\n[2] CLI COMMAND PARSING")
-    print("-" * 70)
-    
+    Real-world use case: Terminal applications, automation tools.
+    """
     commands = [
         ["deploy", "production"],
         ["backup", "database", "users_db"],
@@ -270,19 +272,27 @@ def main() -> None:
         result = parse_cli_command(cmd)
         cmd_str = " ".join(cmd)
         print(f"  {cmd_str:35} -> {result}")
+
+
+def demonstrate_http_status_codes() -> None:
+    """
+    Demonstrates status code categorization with guard conditions.
     
-    print("\n\n[3] HTTP STATUS CODE CATEGORIZATION")
-    print("-" * 70)
-    
+    Real-world use case: HTTP clients, monitoring systems.
+    """
     status_codes = [200, 201, 301, 404, 429, 500, 503, 418, 226]
     
     for code in status_codes:
         category = categorize_http_status(code)
         print(f"  {code:3} -> {category}")
+
+
+def demonstrate_message_processing() -> None:
+    """
+    Demonstrates dictionary pattern matching for event handling.
     
-    print("\n\n[4] MESSAGE QUEUE PROCESSING")
-    print("-" * 70)
-    
+    Real-world use case: Message queues, microservices.
+    """
     messages = [
         {"type": "user.registered", "email": "alice@example.com", "user_id": 101},
         {"type": "order.placed", "order_id": "ORD-123", "amount": 99.99},
@@ -295,10 +305,14 @@ def main() -> None:
     for msg in messages:
         result = process_message(msg)
         print(f"  {result}")
+
+
+def demonstrate_deployment_strategies() -> None:
+    """
+    Demonstrates strategy selection using structural matching.
     
-    print("\n\n[5] DEPLOYMENT STRATEGY SELECTION")
-    print("-" * 70)
-    
+    Real-world use case: CI/CD pipeline automation.
+    """
     deployments = [
         {"strategy": "blue-green", "environment": "production"},
         {"strategy": "canary", "percentage": 10},
@@ -310,6 +324,33 @@ def main() -> None:
     for config in deployments:
         strategy = determine_deployment_strategy(config)
         print(f"  {strategy}")
+
+
+def main() -> None:
+    """Main function to run all demonstrations."""
+    print("="*70)
+    print("PATTERN MATCHING: match/case (Python 3.10+)".center(70))
+    print("="*70)
+    
+    print("\n[1] API REQUEST ROUTING")
+    print("-" * 70)
+    demonstrate_api_routing()
+    
+    print("\n\n[2] CLI COMMAND PARSING")
+    print("-" * 70)
+    demonstrate_cli_parsing()
+    
+    print("\n\n[3] HTTP STATUS CODE CATEGORIZATION")
+    print("-" * 70)
+    demonstrate_http_status_codes()
+    
+    print("\n\n[4] MESSAGE QUEUE PROCESSING")
+    print("-" * 70)
+    demonstrate_message_processing()
+    
+    print("\n\n[5] DEPLOYMENT STRATEGY SELECTION")
+    print("-" * 70)
+    demonstrate_deployment_strategies()
     
     print("\n" + "="*70)
     print("Key Takeaways:")

@@ -171,28 +171,34 @@ def unreliable_api_call(success_rate: float = 0.5) -> dict:
     return {"status": "success", "data": [1, 2, 3]}
 
 
-def main() -> None:
-    """Main function demonstrating decorators."""
-    print("="*70)
-    print("PYTHON DECORATORS: BASICS".center(70))
-    print("="*70)
+
+def demonstrate_timer_decorator() -> None:
+    """
+    Demonstrates adding execution timing via decorators.
     
-    print("\n[1] TIMER DECORATOR - Performance Monitoring")
-    print("-" * 70)
-    
+    Real-world use case: Performance profiling, SRE metrics.
+    """
     items = list(range(100))
     result = process_data(items)
     print(f"Processed {result} items")
+
+
+def demonstrate_debug_decorator() -> None:
+    """
+    Demonstrates call tracing with arguments and return values.
     
-    print("\n\n[2] DEBUG DECORATOR - Call Tracing")
-    print("-" * 70)
-    
+    Real-world use case: Audit logging, development debugging.
+    """
     total = calculate_total(99.99, 2, tax_rate=0.10)
     print(f"Final total: ${total:.2f}")
+
+
+def demonstrate_validation_decorator() -> None:
+    """
+    Demonstrates pre-execution input validation.
     
-    print("\n\n[3] VALIDATION DECORATOR - Input Checking")
-    print("-" * 70)
-    
+    Real-world use case: Protecting sensitive logic from illegal data.
+    """
     try:
         discount1 = calculate_discount(100, 20)
         print(f"✓ Valid: discount = ${discount1:.2f}")
@@ -200,29 +206,41 @@ def main() -> None:
         discount2 = calculate_discount(-100, 20)  # Invalid
     except ValueError as e:
         print(f"✗ Invalid: {e}")
+
+
+def demonstrate_memoization() -> None:
+    """
+    Demonstrates transparent caching of function results.
     
-    print("\n\n[4] MEMOIZATION DECORATOR - Caching Results")
-    print("-" * 70)
-    
+    Real-world use case: Optimizing expensive recursive calls or API responses.
+    """
     print("Calculating fibonacci(10):")
     fib_10 = fibonacci(10)
     print(f"Result: {fib_10}")
     
     print("\nCalculating fibonacci(10) again (should use cache):")
     fib_10_again = fibonacci(10)
+
+
+def demonstrate_retry_logic() -> None:
+    """
+    Demonstrates automatic retries for transient failures.
     
-    print("\n\n[5] RETRY DECORATOR - Fault Tolerance")
-    print("-" * 70)
-    
+    Real-world use case: Resilience in microservices, network robustness.
+    """
     try:
         response = unreliable_api_call(success_rate=0.7)
         print(f"✓ API call succeeded: {response}")
     except ConnectionError as e:
         print(f"✗ API call failed: {e}")
+
+
+def demonstrate_stacked_decorators() -> None:
+    """
+    Demonstrates how to combine multiple behaviors on a single function.
     
-    print("\n\n[6] STACKING DECORATORS")
-    print("-" * 70)
-    
+    Real-world use case: Combining logging, timing, and security checks.
+    """
     @timer_decorator
     @debug_decorator
     def complex_operation(x: int, y: int) -> int:
@@ -232,28 +250,45 @@ def main() -> None:
     
     result = complex_operation(5, 10)
     print(f"Result: {result}")
+
+
+def main() -> None:
+    """Main function demonstrating decorator basics."""
+    print("="*70)
+    print("PYTHON DECORATORS: BASICS".center(70))
+    print("="*70)
+    
+    print("\n[1] TIMER DECORATOR - Performance Monitoring")
+    print("-" * 70)
+    demonstrate_timer_decorator()
+    
+    print("\n\n[2] DEBUG DECORATOR - Call Tracing")
+    print("-" * 70)
+    demonstrate_debug_decorator()
+    
+    print("\n\n[3] VALIDATION DECORATOR - Input Checking")
+    print("-" * 70)
+    demonstrate_validation_decorator()
+    
+    print("\n\n[4] MEMOIZATION DECORATOR - Caching Results")
+    print("-" * 70)
+    demonstrate_memoization()
+    
+    print("\n\n[5] RETRY DECORATOR - Fault Tolerance")
+    print("-" * 70)
+    demonstrate_retry_logic()
+    
+    print("\n\n[6] STACKING DECORATORS")
+    print("-" * 70)
+    demonstrate_stacked_decorators()
     
     print("\n" + "="*70)
-    print("Decorator Essentials:")
-    print("-" * 70)
-    print("Syntax:")
-    print("  @decorator")
-    print("  def function():")
-    print("      ...")
-    print("\nEquivalent to:")
-    print("  function = decorator(function)")
-    print("\nKey Points:")
-    print("• Decorators wrap functions to add functionality")
-    print("• Use @wraps to preserve function metadata")
-    print("• Can stack multiple decorators")
-    print("• Decorator factories use nested functions")
-    print("\nCommon Patterns:")
-    print("✓ Timing/profiling")
-    print("✓ Logging/debugging")
-    print("✓ Input validation")
-    print("✓ Caching/memoization")
-    print("✓ Authentication/authorization")
-    print("✓ Retry logic")
+    print("Key Takeaways:")
+    print("1. Decorators wrap functions to extend behavior without modifying source code")
+    print("2. The @syntax is syntactic sugar for 'func = decorator(func)'")
+    print("3. Always use @functools.wraps to preserve function metadata (docstrings, etc.)")
+    print("4. Decorators can accept arguments (decorator factories)")
+    print("5. Multiple decorators can be stacked; order of execution is top-to-bottom")
     print("="*70)
 
 

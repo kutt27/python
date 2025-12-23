@@ -181,15 +181,13 @@ def determine_instance_type(cpu_intensive: bool, memory_intensive: bool) -> str:
         return "t3.medium"   # General purpose
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("TERNARY OPERATORS & INLINE CONDITIONALS".center(70))
-    print("="*70)
+
+def demonstrate_delivery_fees() -> None:
+    """
+    Demonstrates ternary operator usage for delivery fee calculation.
     
-    print("\n[1] DELIVERY FEE CALCULATOR")
-    print("-" * 70)
-    
+    Real-world use case: E-commerce logistics.
+    """
     test_orders = [
         (50, "standard"),
         (150, "standard"),
@@ -201,10 +199,14 @@ def main() -> None:
         fee = calculate_delivery_fee(amount, tier)
         status = "FREE" if fee == 0 else f"${fee:.2f}"
         print(f"${amount:>6.2f} | {tier:8} tier | Delivery: {status}")
+
+
+def demonstrate_cache_ttl() -> None:
+    """
+    Demonstrates nested ternary operators for cache configuration.
     
-    print("\n\n[2] CACHE TTL CONFIGURATION")
-    print("-" * 70)
-    
+    Real-world use case: CDN/Caching logic.
+    """
     scenarios = [
         (True, False, "Static content, public"),
         (False, False, "Dynamic content, public"),
@@ -216,10 +218,14 @@ def main() -> None:
         ttl = get_cache_ttl(is_static, is_auth)
         ttl_str = "No cache" if ttl == 0 else f"{ttl}s"
         print(f"{ttl_str:>10} | {description}")
+
+
+def demonstrate_logging_levels() -> None:
+    """
+    Demonstrates environment-based logging level selection.
     
-    print("\n\n[3] LOG LEVEL DETERMINATION")
-    print("-" * 70)
-    
+    Real-world use case: Application configuration.
+    """
     configs = [
         (False, False, "Development, normal"),
         (True, False, "Production, normal"),
@@ -230,20 +236,28 @@ def main() -> None:
     for is_prod, debug, description in configs:
         level = determine_log_level(is_prod, debug)
         print(f"{level:8} | {description}")
+
+
+def demonstrate_db_pool_sizing() -> None:
+    """
+    Demonstrates dynamic resource allocation based on conditions.
     
-    print("\n\n[4] DATABASE POOL SIZING")
-    print("-" * 70)
-    
+    Real-world use case: Database connection management.
+    """
     environments = ["development", "staging", "production"]
     
     for env in environments:
         normal = get_database_pool_size(env, high_traffic=False)
         high = get_database_pool_size(env, high_traffic=True)
         print(f"{env.capitalize():12} | Normal: {normal:>2} | High traffic: {high:>2}")
+
+
+def demonstrate_user_status() -> None:
+    """
+    Demonstrates complex status formatting using ternary logic.
     
-    print("\n\n[5] USER STATUS FORMATTING")
-    print("-" * 70)
-    
+    Real-world use case: User profile management.
+    """
     users = [
         (True, True, True, "Active premium verified user"),
         (True, True, False, "Active verified standard user"),
@@ -254,10 +268,14 @@ def main() -> None:
     for active, verified, premium, description in users:
         status = format_user_status(active, verified, premium)
         print(f"{status:30} | {description}")
+
+
+def demonstrate_rate_limit_warnings() -> None:
+    """
+    Demonstrates threshold-based warning message generation.
     
-    print("\n\n[6] RATE LIMIT WARNINGS")
-    print("-" * 70)
-    
+    Real-world use case: API usage monitoring.
+    """
     limits = [
         (950, 1000),
         (500, 1000),
@@ -270,10 +288,14 @@ def main() -> None:
             print(message)
         else:
             print(f"✓ OK: {remaining}/{limit} requests remaining ({(remaining/limit)*100:.0f}%)")
+
+
+def demonstrate_infrastructure_recommendations() -> None:
+    """
+    Demonstrates resource-based decision making for infrastructure.
     
-    print("\n\n[7] CLOUD INSTANCE RECOMMENDATIONS")
-    print("-" * 70)
-    
+    Real-world use case: Cloud resource provisioning.
+    """
     workloads = [
         (True, True, "ML training (CPU + Memory)"),
         (True, False, "Video encoding (CPU)"),
@@ -284,6 +306,41 @@ def main() -> None:
     for cpu, mem, description in workloads:
         instance = determine_instance_type(cpu, mem)
         print(f"{instance:12} | {description}")
+
+
+def main() -> None:
+    """Main function to run all demonstrations."""
+    print("="*70)
+    print("TERNARY OPERATORS & INLINE CONDITIONALS".center(70))
+    print("="*70)
+    
+    print("\n[1] DELIVERY FEE CALCULATOR")
+    print("-" * 70)
+    demonstrate_delivery_fees()
+    
+    print("\n\n[2] CACHE TTL CONFIGURATION")
+    print("-" * 70)
+    demonstrate_cache_ttl()
+    
+    print("\n\n[3] LOG LEVEL DETERMINATION")
+    print("-" * 70)
+    demonstrate_logging_levels()
+    
+    print("\n\n[4] DATABASE POOL SIZING")
+    print("-" * 70)
+    demonstrate_db_pool_sizing()
+    
+    print("\n\n[5] USER STATUS FORMATTING")
+    print("-" * 70)
+    demonstrate_user_status()
+    
+    print("\n\n[6] RATE LIMIT WARNINGS")
+    print("-" * 70)
+    demonstrate_rate_limit_warnings()
+    
+    print("\n\n[7] CLOUD INSTANCE RECOMMENDATIONS")
+    print("-" * 70)
+    demonstrate_infrastructure_recommendations()
     
     print("\n" + "="*70)
     print("Key Takeaways:")

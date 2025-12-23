@@ -158,35 +158,40 @@ def filter_valid_orders(orders: List[Dict]) -> List[Dict]:
     return valid_orders
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("FOR LOOPS: ITERATING OVER COLLECTIONS".center(70))
-    print("="*70)
+
+def demonstrate_database_processing() -> None:
+    """
+    Demonstrates iteration over database query results.
     
-    print("\n[1] DATABASE QUERY RESULTS")
-    print("-" * 70)
-    
+    Real-world use case: Processing records from an ORM or database.
+    """
     db_records = [
         {"id": 1, "username": "alice", "status": "active"},
         {"id": 2, "username": "bob", "status": "inactive"},
         {"id": 3, "username": "charlie", "status": "active"},
     ]
-    
     process_database_results(db_records)
+
+
+def demonstrate_bulk_notifications() -> None:
+    """
+    Demonstrates sending notifications in bulk using iteration.
     
-    print("\n\n[2] BULK NOTIFICATIONS")
-    print("-" * 70)
-    
+    Real-world use case: Communication systems, email dispatchers.
+    """
     users = ["alice@example.com", "bob@example.com", "charlie@example.com"]
     results = send_notifications(users, "System maintenance tonight at 2 AM")
     
     successful = sum(1 for _, success in results if success)
     print(f"\nSent {successful}/{len(results)} notifications successfully")
+
+
+def demonstrate_error_analysis() -> None:
+    """
+    Demonstrates log analysis by iterating over patterns.
     
-    print("\n\n[3] ERROR LOG ANALYSIS")
-    print("-" * 70)
-    
+    Real-world use case: Monitoring, observability.
+    """
     logs = [
         "2024-12-05 ERROR: Timeout connecting to database",
         "2024-12-05 ERROR: 404 Not Found /api/users/999",
@@ -199,10 +204,14 @@ def main() -> None:
     print(f"\nAnalyzed {len(logs)} error logs:")
     for error_type, count in error_summary.items():
         print(f"  {error_type}: {count}")
+
+
+def demonstrate_data_transformation() -> None:
+    """
+    Demonstrates data transformation during collection iteration.
     
-    print("\n\n[4] DATA TRANSFORMATION")
-    print("-" * 70)
-    
+    Real-world use case: ETL, API response formatting.
+    """
     raw_user_data = [
         {"user_id": 1, "full_name": "alice smith", "email_address": "ALICE@EXAMPLE.COM", "status": "active"},
         {"user_id": 2, "full_name": "bob jones", "email_address": "bob@EXAMPLE.com", "status": "inactive"},
@@ -212,10 +221,14 @@ def main() -> None:
     print("\nTransformed data:")
     for user in transformed_data:
         print(f"  {user}")
+
+
+def demonstrate_order_validation() -> None:
+    """
+    Demonstrates conditional filtering during iteration.
     
-    print("\n\n[5] ORDER VALIDATION")
-    print("-" * 70)
-    
+    Real-world use case: Business rule validation.
+    """
     orders = [
         {"id": "ORD-001", "amount": 99.99, "status": "completed"},
         {"id": "ORD-002", "amount": 0, "status": "pending"},  # Invalid: zero amount
@@ -225,14 +238,41 @@ def main() -> None:
     
     valid = filter_valid_orders(orders)
     print(f"\n{len(valid)}/{len(orders)} orders are valid")
+
+
+def main() -> None:
+    """Main function to run all demonstrations for collection iteration."""
+    print("="*70)
+    print("PYTHON FOR LOOPS: ITERATING OVER COLLECTIONS".center(70))
+    print("="*70)
+    
+    print("\n[1] DATABASE QUERY RESULTS")
+    print("-" * 70)
+    demonstrate_database_processing()
+    
+    print("\n\n[2] BULK NOTIFICATIONS")
+    print("-" * 70)
+    demonstrate_bulk_notifications()
+    
+    print("\n\n[3] ERROR LOG ANALYSIS")
+    print("-" * 70)
+    demonstrate_error_analysis()
+    
+    print("\n\n[4] DATA TRANSFORMATION")
+    print("-" * 70)
+    demonstrate_data_transformation()
+    
+    print("\n\n[5] ORDER VALIDATION")
+    print("-" * 70)
+    demonstrate_order_validation()
     
     print("\n" + "="*70)
     print("Key Takeaways:")
     print("1. for item in collection: iterates over each element")
     print("2. Works with lists, tuples, strings, dictionaries, sets")
-    print("3. Use enumerate() to get index: for i, item in enumerate(list)")
-    print("4. Use zip() to iterate multiple lists: for a, b in zip(list1, list2)")
-    print("5. Dictionary iteration: for key, value in dict.items()")
+    print("3. Use enumerate() to get index when needed")
+    print("4. Use zip() to iterate over multiple parallel collections")
+    print("5. Dictionary iteration: use dict.items() for key-value access")
     print("="*70)
 
 

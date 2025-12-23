@@ -12,7 +12,7 @@ Real-World Applications:
 - Business rule engines
 """
 
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 
 def validate_user_credentials(
@@ -90,7 +90,7 @@ def should_show_feature(
     user_role: str,
     feature_name: str,
     is_beta_user: bool = False,
-    feature_flags: Optional[dict] = None
+    feature_flags: Optional[Dict[str, Any]] = None
 ) -> bool:
     """
     Determines if feature should be shown to user.
@@ -206,15 +206,13 @@ def categorize_transaction(
     return "medium" if amount > 500 else "low"
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("LOGICAL OPERATORS & COMPLEX CONDITIONS".center(70))
-    print("="*70)
+
+def demonstrate_credential_validation() -> None:
+    """
+    Demonstrates credential validation using logical operators.
     
-    print("\n[1] USER CREDENTIAL VALIDATION")
-    print("-" * 70)
-    
+    Real-world use case: User registration systems.
+    """
     test_credentials = [
         ("admin", "Pass123", "Valid credentials"),
         ("ab", "Pass123", "Username too short"),
@@ -226,10 +224,14 @@ def main() -> None:
         is_valid, message = validate_user_credentials(username, password)
         status = "✓ VALID" if is_valid else "✗ INVALID"
         print(f"{status:10} | {description:30} | {message}")
+
+
+def demonstrate_api_access() -> None:
+    """
+    Demonstrates API access control using complex boolean logic.
     
-    print("\n\n[2] API ACCESS CONTROL")
-    print("-" * 70)
-    
+    Real-world use case: API gateways.
+    """
     allowed_ips = ["192.168.1.10", "10.0.0.5"]
     
     api_tests = [
@@ -243,10 +245,14 @@ def main() -> None:
         allowed, reason = check_api_access(key, ip, rate_limited, allowed_ips)
         status = "✓ ALLOW" if allowed else "✗ DENY"
         print(f"{status:10} | {description:20} | {reason}")
+
+
+def demonstrate_feature_flags() -> None:
+    """
+    Demonstrates feature flag evaluation with role-based logic.
     
-    print("\n\n[3] FEATURE FLAG EVALUATION")
-    print("-" * 70)
-    
+    Real-world use case: Gradual feature rollouts.
+    """
     feature_flags = {
         "new_dashboard": {"enabled": True, "roles": ["admin", "superadmin"]},
         "beta_ai_chat": {"enabled": True, "roles": ["user", "admin"]},
@@ -266,10 +272,14 @@ def main() -> None:
         status = "✓ SHOW" if should_show else "✗ HIDE"
         beta_str = " (beta user)" if is_beta else ""
         print(f"{status:10} | {role:10} | {feature_desc:20} {beta_str}")
+
+
+def demonstrate_eligibility() -> None:
+    """
+    Demonstrates eligibility evaluation using multiple criteria.
     
-    print("\n\n[4] ELIGIBILITY EVALUATION")
-    print("-" * 70)
-    
+    Real-world use case: Loan/Service approval systems.
+    """
     applicants = [
         (25, True, 700, "employed", "Good applicant"),
         (19, True, 750, "employed", "Too young"),
@@ -282,10 +292,14 @@ def main() -> None:
         eligible, reason = evaluate_eligibility(age, license, credit, employment)
         status = "✓ ELIGIBLE" if eligible else "✗ DENIED"
         print(f"{status:12} | {description:25} | {reason}")
+
+
+def demonstrate_risk_analysis() -> None:
+    """
+    Demonstrates fraud risk categorization using logical AND/OR.
     
-    print("\n\n[5] TRANSACTION RISK CATEGORIZATION")
-    print("-" * 70)
-    
+    Real-world use case: Payment processing.
+    """
     transactions = [
         (100, False, False, "regular", "Small local purchase"),
         (2000, False, False, "new", "Large purchase, new customer"),
@@ -299,6 +313,33 @@ def main() -> None:
         risk_icons = {"low": "🟢", "medium": "🟡", "high": "🔴"}
         
         print(f"{risk_icons[risk]} {risk.upper():6} | ${amount:>7.2f} | {description}")
+
+
+def main() -> None:
+    """Main function to run all demonstrations."""
+    print("="*70)
+    print("LOGICAL OPERATORS & COMPLEX CONDITIONS".center(70))
+    print("="*70)
+    
+    print("\n[1] USER CREDENTIAL VALIDATION")
+    print("-" * 70)
+    demonstrate_credential_validation()
+    
+    print("\n\n[2] API ACCESS CONTROL")
+    print("-" * 70)
+    demonstrate_api_access()
+    
+    print("\n\n[3] FEATURE FLAG EVALUATION")
+    print("-" * 70)
+    demonstrate_feature_flags()
+    
+    print("\n\n[4] ELIGIBILITY EVALUATION")
+    print("-" * 70)
+    demonstrate_eligibility()
+    
+    print("\n\n[5] TRANSACTION RISK CATEGORIZATION")
+    print("-" * 70)
+    demonstrate_risk_analysis()
     
     print("\n" + "="*70)
     print("Key Takeaways:")

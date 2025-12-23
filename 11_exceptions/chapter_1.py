@@ -52,15 +52,13 @@ def fetch_user_data(user_id: int) -> dict:
         return {}
 
 
-def main():
-    """Demonstrates basic exception handling."""
-    print("="*70)
-    print("EXCEPTION HANDLING BASICS".center(70))
-    print("="*70)
+
+def demonstrate_basic_try_except() -> None:
+    """
+    Demonstrates basic error handling for data parsing.
     
-    print("\n[1] BASIC TRY-EXCEPT")
-    print("-" * 70)
-    
+    Real-world use case: Processing unstable user input from web forms.
+    """
     inputs = ["50%", "75.5", "invalid", "100 %"]
     
     for val in inputs:
@@ -69,26 +67,42 @@ def main():
             print(f"Parsed '{val}' -> {result:.2f}")
         else:
             print(f"Failed to parse '{val}'")
-            
-    print("\n[2] HANDLING DICTIONARY LOOKUPS")
-    print("-" * 70)
+
+
+def demonstrate_dictionary_lookups() -> None:
+    """
+    Demonstrates handling missing keys in collections.
     
+    Real-world use case: Searching for records in a cache or database mock.
+    """
     # Valid user
     print(f"User 1: {fetch_user_data(1)}")
     
     # Invalid user (KeyError)
     print(f"User 99: {fetch_user_data(99)}")
+
+
+def main() -> None:
+    """Main function demonstrating basic exception handling."""
+    print("="*70)
+    print("PYTHON EXCEPTIONS: BASIC HANDLING".center(70))
+    print("="*70)
     
-    # Invalid type (simulated via direct call usually caught by type checkers, 
-    # but runtime data can be messy)
-    # Using a string explicitly to trigger TypeError in implementation logic if we didn't type hint
-    # logic depending on how dictionary keys work
+    print("\n[1] BASIC TRY-EXCEPT - Data Parsing")
+    print("-" * 70)
+    demonstrate_basic_try_except()
+    
+    print("\n\n[2] HANDLING DICTIONARY LOOKUPS")
+    print("-" * 70)
+    demonstrate_dictionary_lookups()
     
     print("\n" + "="*70)
-    print("Key Points:")
-    print("• Use try-except to handle potential runtime errors")
-    print("• Catch specific exceptions (ValueError, KeyError) over generic Exception")
-    print("• Keep try blocks minimal - only wrap code that might fail")
+    print("Key Takeaways:")
+    print("1. Use try-except to wrap code that might fail at runtime")
+    print("2. Always catch specific exceptions (e.g. ValueError) rather than generic ones")
+    print("3. Keep try blocks as small as possible to avoid catching unrelated errors")
+    print("4. Provide helpful error messages or fallback values when exceptions occur")
+    print("5. Exception handling prevents application crashes on bad data")
     print("="*70)
 
 

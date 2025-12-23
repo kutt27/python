@@ -175,15 +175,13 @@ def check_access_permission(user_role: str, resource: str) -> bool:
     return False
 
 
-def main() -> None:
-    """Main function to run all demonstrations."""
-    print("="*70)
-    print("CONDITIONALS: PRICING & ACCESS CONTROL".center(70))
-    print("="*70)
+
+def demonstrate_subscription_pricing() -> None:
+    """
+    Demonstrates subscription pricing calculation using if/elif/else.
     
-    print("\n[1] SUBSCRIPTION PRICING CALCULATOR")
-    print("-" * 70)
-    
+    Real-world use case: SaaS pricing, tier-based billing.
+    """
     tiers = ["free", "basic", "pro", "enterprise"]
     user_count = 10
     
@@ -194,17 +192,26 @@ def main() -> None:
         print(f"\n{tier.upper()} tier ({user_count} users):")
         print(f"  Monthly: ${monthly_price:.2f}/month")
         print(f"  Annual: ${annual_price:.2f}/year (20% savings)")
+
+
+def demonstrate_api_rate_limits() -> None:
+    """
+    Demonstrates API rate limit retrieval using pattern matching.
     
-    print("\n\n[2] API RATE LIMITS")
-    print("-" * 70)
-    
+    Real-world use case: API gateway, rate limiting.
+    """
+    tiers = ["free", "basic", "pro", "enterprise"]
     for plan in tiers:
         limit = get_api_rate_limit(plan)
         print(f"{plan.capitalize():12} -> {limit:>8,} requests/hour")
+
+
+def demonstrate_shipping_costs() -> None:
+    """
+    Demonstrates shipping cost calculation using ternary operators.
     
-    print("\n\n[3] SHIPPING COST CALCULATOR")
-    print("-" * 70)
-    
+    Real-world use case: E-commerce checkout.
+    """
     test_orders = [
         (30.00, False, "Regular customer, low order"),
         (75.00, False, "Regular customer, free shipping"),
@@ -215,10 +222,14 @@ def main() -> None:
         cost = calculate_shipping_cost(total, is_premium)
         status = "FREE" if cost == 0 else f"${cost:.2f}"
         print(f"${total:6.2f} | {'Premium' if is_premium else 'Regular':8} | {status:>8} | {description}")
+
+
+def demonstrate_dynamic_discounts() -> None:
+    """
+    Demonstrates complex discount logic with multiple conditions.
     
-    print("\n\n[4] DYNAMIC DISCOUNT CALCULATOR")
-    print("-" * 70)
-    
+    Real-world use case: Promotional engines.
+    """
     test_scenarios = [
         (50, "new", None),
         (150, "returning", None),
@@ -233,10 +244,14 @@ def main() -> None:
         
         promo_str = f"+ {promo}" if promo else ""
         print(f"${total:>6.2f} | {cust_type:9} {promo_str:10} | {discount:>5.1f}% off | Final: ${final_price:.2f}")
+
+
+def demonstrate_access_control() -> None:
+    """
+    Demonstrates role-based access control (RBAC).
     
-    print("\n\n[5] ROLE-BASED ACCESS CONTROL")
-    print("-" * 70)
-    
+    Real-world use case: Authorization systems.
+    """
     roles = ["guest", "user", "admin", "superadmin"]
     resources = ["read", "write", "delete", "admin"]
     
@@ -247,6 +262,33 @@ def main() -> None:
         permissions = [check_access_permission(role, res) for res in resources]
         perm_str = " | ".join(["✓" if p else "✗" for p in permissions])
         print(f"{role:12} | {perm_str}")
+
+
+def main() -> None:
+    """Main function to run all demonstrations."""
+    print("="*70)
+    print("CONDITIONALS: PRICING & ACCESS CONTROL".center(70))
+    print("="*70)
+    
+    print("\n[1] SUBSCRIPTION PRICING CALCULATOR")
+    print("-" * 70)
+    demonstrate_subscription_pricing()
+    
+    print("\n\n[2] API RATE LIMITS")
+    print("-" * 70)
+    demonstrate_api_rate_limits()
+    
+    print("\n\n[3] SHIPPING COST CALCULATOR")
+    print("-" * 70)
+    demonstrate_shipping_costs()
+    
+    print("\n\n[4] DYNAMIC DISCOUNT CALCULATOR")
+    print("-" * 70)
+    demonstrate_dynamic_discounts()
+    
+    print("\n\n[5] ROLE-BASED ACCESS CONTROL")
+    print("-" * 70)
+    demonstrate_access_control()
     
     print("\n" + "="*70)
     print("Key Takeaways:")
