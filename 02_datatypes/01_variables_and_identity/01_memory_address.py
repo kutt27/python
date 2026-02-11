@@ -17,7 +17,7 @@ def demonstrate_memory_address() -> None:
     
     # String interning for identical strings
     db_host_dev2 = "localhost"
-    print(f"\nString interning demo:")
+    print("\nString interning demo:")
     print(f"db_host_dev is db_host_dev2: {db_host_dev is db_host_dev2}")
     print("Python interns (caches) short strings for memory efficiency")
 

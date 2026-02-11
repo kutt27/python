@@ -2,6 +2,7 @@
 Demonstrates Python's name binding mechanism and variable reassignment.
 """
 
+
 def demonstrate_name_binding() -> None:
     # Example: API rate limit configuration
     max_requests = 100  # Initial rate limit
@@ -16,6 +17,12 @@ def demonstrate_name_binding() -> None:
     # Key insight: The name 'max_requests' now points to a different object
     print("\nIMPORTANT: Integer objects are IMMUTABLE")
     print("Reassignment changes the REFERENCE, not the VALUE")
+    
+    # nameRandom = "something"
+    # print(f"String id: {id(nameRandom)}")
+    
+    # nameRandom = "nothing"
+    # print(f"String id: {id(nameRandom)}")
 
 if __name__ == "__main__":
     demonstrate_name_binding()
