@@ -2,11 +2,13 @@
 Demonstrates that sets are mutable and maintain the same identity when modified.
 """
 
-from typing import Set
-
 def demonstrate_set_mutability() -> None:
     # Example: User permissions in an authentication system
-    user_permissions: Set[str] = set()
+    user_permissions: set[str] = set()
+    
+    # old Set method
+    # from typing import Set
+    # user_permissions: Set[str] = set()
     
     print(f"Initial permissions: {user_permissions}")
     print(f"Memory ID: {id(user_permissions)}")
