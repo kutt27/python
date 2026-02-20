@@ -1,7 +1,11 @@
 # 🐍 The Ultimate Python Challenge List
 
 A collection of **100** conceptual and practical exercises to master Modern Python.
+
+> This list is generated with the help of Gemini 3.0 flash model. 
+
 **Rules**: solving these requires writing code, but the focus is on the *concepts*.
+**Note**: The challenges are ordered by difficulty, but the focus is on the *concepts*. Do not use any external libraries.
 
 ---
 
