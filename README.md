@@ -8,6 +8,7 @@ Working udpate:
 - [Datatypes](02_datatypes)
 - [Conditionals](03_conditionals)
 - [Loops](04_loops)
+- [Functions](05_functions)
 
 ## How to Use This Repository
 
